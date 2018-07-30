@@ -1,13 +1,3 @@
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = Object.setPrototypeOf ||
-        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
 var Scales = /** @class */ (function () {
     function Scales() {
         this.productsArray = []; // products in Scales
@@ -31,33 +21,32 @@ var Scales = /** @class */ (function () {
     };
     return Scales;
 }());
-var Product = /** @class */ (function () {
-    function Product(_name, _scale) {
+var Apple = /** @class */ (function () {
+    function Apple(_name, _scale) {
         this.name = _name;
         this.scale = _scale;
     }
-    Product.prototype.getScale = function () {
+    Apple.prototype.getScale = function () {
         return this.scale;
     };
-    Product.prototype.getName = function () {
+    Apple.prototype.getName = function () {
         return this.name;
     };
-    return Product;
-}());
-var Apple = /** @class */ (function (_super) {
-    __extends(Apple, _super);
-    function Apple() {
-        return _super !== null && _super.apply(this, arguments) || this;
-    }
     return Apple;
-}(Product));
-var Tomato = /** @class */ (function (_super) {
-    __extends(Tomato, _super);
-    function Tomato() {
-        return _super !== null && _super.apply(this, arguments) || this;
+}());
+var Tomato = /** @class */ (function () {
+    function Tomato(_name, _scale) {
+        this.name = _name;
+        this.scale = _scale;
     }
+    Tomato.prototype.getScale = function () {
+        return this.scale;
+    };
+    Tomato.prototype.getName = function () {
+        return this.name;
+    };
     return Tomato;
-}(Product));
+}());
 var apple1 = new Apple('apple1', 100);
 var tomato1 = new Tomato('tomato1', 50);
 var myScales = new Scales();
