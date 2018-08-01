@@ -1,13 +1,3 @@
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = Object.setPrototypeOf ||
-        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
 var Scales = /** @class */ (function () {
     function Scales(type) {
         this.storage = new type();
@@ -81,24 +71,10 @@ var Product = /** @class */ (function () {
     }
     return Product;
 }());
-var Apple = /** @class */ (function (_super) {
-    __extends(Apple, _super);
-    function Apple() {
-        return _super !== null && _super.apply(this, arguments) || this;
-    }
-    return Apple;
-}(Product));
-var Tomato = /** @class */ (function (_super) {
-    __extends(Tomato, _super);
-    function Tomato() {
-        return _super !== null && _super.apply(this, arguments) || this;
-    }
-    return Tomato;
-}(Product));
-var apple1 = new Apple('apple1', 100);
-var tomato1 = new Tomato('tomato1', 50);
-var apple2 = new Apple('apple2', 200);
-var tomato2 = new Tomato('tomato2', 75);
+var apple1 = new Product('apple1', 100);
+var tomato1 = new Product('tomato1', 50);
+var apple2 = new Product('apple2', 200);
+var tomato2 = new Product('tomato2', 75);
 var scalesArray = new Scales(ScalesStorageEngineArray);
 var scalesLocalStorage = new Scales(ScalesStorageEngineLocalStorage);
 var appleFirst = scalesArray.add(apple1);

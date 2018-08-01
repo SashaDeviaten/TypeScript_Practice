@@ -6,11 +6,11 @@ class Scales <StorageEngine extends IStorageEngine>{
         this.storage = new type();
     }
 
-    add(item: any): number {
+    add(item: Product): number {
         return this.storage.addItem(item)
     }
 
-    getItem(index: number): any {
+    getItem(index: number): Product {
         return this.storage.getItem(index)
     }
 
@@ -39,13 +39,13 @@ class Scales <StorageEngine extends IStorageEngine>{
 
 class ScalesStorageEngineArray implements IStorageEngine {
 
-    items: Array<any> = [];
+    items: Array<Product> = [];
 
-    addItem(item): number {
+    addItem(item: Product): number {
         return  this.items.push(item) - 1
     }
 
-    getItem(index): any {
+    getItem(index: number): Product {
         return this.items[index]
     }
 
@@ -63,14 +63,14 @@ class ScalesStorageEngineLocalStorage implements IStorageEngine {
         localStorage.setItem(`ScalesStorageEngineLocalStorage_${this.id}`, JSON.stringify([]))
     }
 
-    addItem(item): number {
+    addItem(item: Product): number {
         let items = JSON.parse(localStorage.getItem(`ScalesStorageEngineLocalStorage_${this.id}`));
         items.push(item);
         localStorage.setItem(`ScalesStorageEngineLocalStorage_${this.id}`, JSON.stringify(items));
         return --items.length
     }
 
-    getItem(index): any {
+    getItem(index: number): Product {
         let items = JSON.parse(localStorage.getItem(`ScalesStorageEngineLocalStorage_${this.id}`));
         return items[index]
     }
@@ -83,8 +83,8 @@ class ScalesStorageEngineLocalStorage implements IStorageEngine {
 }
 
 interface IStorageEngine {
-    addItem(item): number;
-    getItem(index): any;
+    addItem(item: Product): number;
+    getItem(index: number): Product;
     getCount(): number
 }
 
@@ -100,18 +100,10 @@ class Product {
 
 }
 
-class Apple extends Product{
-
-}
-
-class Tomato extends Product{
-
-}
-
-const apple1: Apple = new Apple('apple1', 100);
-const tomato1: Tomato = new Tomato('tomato1', 50);
-const apple2: Apple = new Apple('apple2', 200);
-const tomato2: Tomato = new Tomato('tomato2', 75);
+const apple1: Product = new Product('apple1', 100);
+const tomato1: Product = new Product('tomato1', 50);
+const apple2: Product = new Product('apple2', 200);
+const tomato2: Product = new Product('tomato2', 75);
 
 let scalesArray: Scales<ScalesStorageEngineArray> = new Scales<ScalesStorageEngineArray>(ScalesStorageEngineArray);
 let scalesLocalStorage: Scales<ScalesStorageEngineLocalStorage> = new Scales<ScalesStorageEngineLocalStorage>(ScalesStorageEngineLocalStorage);
