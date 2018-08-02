@@ -20,7 +20,8 @@ class Scales <StorageEngine extends IStorageEngine>{
         let count: number = this.storage.getCount();
         for (let i = 0; i < count; i++) {
             let item: any = this.storage.getItem(i);
-            sumScale += item.scale
+            let scalesProduct: Product = new Product(item.name, item.scale);
+            sumScale += scalesProduct.getScale()
         }
         return sumScale
     }
@@ -30,7 +31,8 @@ class Scales <StorageEngine extends IStorageEngine>{
         let count: number = this.storage.getCount();
         for (let i = 0; i < count; i++) {
             let item: any = this.storage.getItem(i);
-            nameList.push(item.name)
+            let scalesProduct: Product = new Product(item.name, item.scale);
+            nameList.push(scalesProduct.getName())
         }
         return nameList
     }
@@ -67,7 +69,7 @@ class ScalesStorageEngineLocalStorage implements IStorageEngine {
         let items = JSON.parse(localStorage.getItem(`ScalesStorageEngineLocalStorage_${this.id}`));
         items.push(item);
         localStorage.setItem(`ScalesStorageEngineLocalStorage_${this.id}`, JSON.stringify(items));
-        return --items.length
+        return items.length - 1
     }
 
     getItem(index: number): Product {
@@ -90,13 +92,24 @@ interface IStorageEngine {
 
 class Product {
 
-    name: string;
-    scale: number;
+    private name: string;
+    private scale: number;
 
     constructor(_name: string, _scale: number) {
         this.name = _name;
         this.scale = _scale;
     }
+
+
+    getScale(): number {
+        return this.scale
+    }
+
+    getName(): string {
+        return this.name
+    }
+
+
 
 }
 
