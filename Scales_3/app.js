@@ -13,8 +13,7 @@ var Scales = /** @class */ (function () {
         var count = this.storage.getCount();
         for (var i = 0; i < count; i++) {
             var item = this.storage.getItem(i);
-            var scalesProduct = new Product(item.name, item.scale);
-            sumScale += scalesProduct.getScale();
+            sumScale += item.getScale();
         }
         return sumScale;
     };
@@ -23,8 +22,7 @@ var Scales = /** @class */ (function () {
         var count = this.storage.getCount();
         for (var i = 0; i < count; i++) {
             var item = this.storage.getItem(i);
-            var scalesProduct = new Product(item.name, item.scale);
-            nameList.push(scalesProduct.getName());
+            nameList.push(item.getName());
         }
         return nameList;
     };
@@ -58,7 +56,7 @@ var ScalesStorageEngineLocalStorage = /** @class */ (function () {
     };
     ScalesStorageEngineLocalStorage.prototype.getItem = function (index) {
         var items = JSON.parse(localStorage.getItem("ScalesStorageEngineLocalStorage_" + this.id));
-        return items[index];
+        return new Product(items[index].name, items[index].scale);
     };
     ScalesStorageEngineLocalStorage.prototype.getCount = function () {
         var items = JSON.parse(localStorage.getItem("ScalesStorageEngineLocalStorage_" + this.id));
